@@ -1,0 +1,38 @@
+/*
+	 *Given two arrays a and b write a function comp(a, b) (orcompSame(a, b)) that checks whether the two arrays have the "same" elements, 
+	 *with the same multiplicities (the multiplicity of a member is the number of times it appears). "Same" means, here, that the elements in
+	 * b are the elements in a squared, regardless of the order.
+	 * 
+	 * Examples:
+	 * 
+	 * a = [121, 144, 19, 161, 19, 144, 19, 11]  
+	 * b = [121, 14641, 20736, 361, 25921, 361, 20736, 361]
+	 * 
+	 * comp(a, b) returns true because in b 121 is the square of 11, 14641 is the square of 121, 
+	 * 20736 the square of 144, 361 the square of 19, 25921 the square of 161, and so on. 
+
+	 */
+
+	public static boolean comp(int[] a, int[] b) {
+		int count =0;
+
+		for(int i=0; i<a.length-1;i++) {
+
+			if(a[i]*a[i]==b[i+1]) {
+				count++;
+				System.out.println(b[i+1]);
+			}
+
+			if(a[a.length-1]*a[a.length-1]==b[0]) {
+				count++;
+				
+			}
+
+			if(count == a.length) {
+				return true;
+			}
+
+		}
+		return false;
+
+	}
