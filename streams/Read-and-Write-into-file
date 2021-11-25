@@ -1,0 +1,46 @@
+package Streams;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+public class Filter {
+
+	/*
+	 * Entwickeln Sie eine Klasse Filter, die im Konstruktor den Namen der Eingabedatei
+	 * und den Namen der Ausgabedatei übergeben bekommt. Die Methode
+	 * filter() soll alle Zeilen aus der Eingabedatei einlesen und nur diejenigen Zeilen
+	 * in die Ausgabedatei schreiben, die mit einem Großbuchstaben beginnen. Die
+	 * Reihenfolge der Zeilen soll dabei nicht verändert werden.
+	 */
+
+	private String eingabeDatei;
+	private String ausgabeDatei;
+
+	public Filter(String eingabe, String ausgabe) {
+		this.eingabeDatei=eingabe;
+		this.ausgabeDatei=ausgabe;
+	}
+
+	public void filter() throws FileNotFoundException {
+
+		Scanner sc = new Scanner(eingabeDatei);
+		PrintWriter pw = new PrintWriter(new FileOutputStream(ausgabeDatei));
+		String line = sc.next();
+		char a;
+
+		while(line != "") {
+			a = line.charAt(0);
+
+			if(Character.isUpperCase(a)) {
+				pw.write(line);
+			}
+			
+			line = sc.next();
+
+		}
+
+		sc.close();
+		pw.close();
+	}
