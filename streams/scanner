@@ -1,0 +1,37 @@
+package Streams;
+
+import java.util.Scanner;
+
+public class ScannerRechner {
+
+	String datei;
+	long ergebnis = 0;
+
+	public ScannerRechner(String dateiname) {
+		datei = dateiname;
+	}
+
+	public long addiere() {
+		// neuen Reader anlegen
+
+		Scanner sc = new Scanner(System.in);
+
+		try {
+			// erste Zeile einlesen
+			String line = sc.next();
+			while (line != null) {
+				ergebnis = ergebnis + Long.parseLong(line);
+
+				// nächste Zeile einlesen
+				line = sc.next();
+			}
+		} finally {
+			// Datenstrom schließen
+			sc.close();
+		}
+		return ergebnis;
+
+	}
+
+}
+
