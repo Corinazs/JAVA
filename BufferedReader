@@ -1,0 +1,46 @@
+package KEs;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Rechner {
+
+	/*Entwickeln Sie eine Klasse Rechner, die im Konstruktor einen Dateinamen übergeben
+	 * bekommt und die eine Methode long addiere() besitzt, die anschließend
+	 * alle Zahlen in der Datei mit Hilfe eines BufferedReader einliest und addiert.
+	 * Gehen Sie davon aus, dass in der Datei jede Zahl in einer eigenen Zeile steht.
+	 */
+	String datei;
+	long ergebnis = 0;
+
+	public Rechner(String dateiname) {
+		datei = dateiname;
+	}
+
+	public long addiere() {
+		// neuen Reader anlegen
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		try {
+			try {
+				// erste Zeile einlesen
+				String line = br.readLine();
+				while (line != null) {
+					ergebnis = ergebnis + Long.parseLong(line);
+					
+					// nächste Zeile einlesen
+					line = br.readLine();
+				}
+			} finally {
+				// Datenstrom schließen
+				br.close();
+			}
+		} catch (IOException e) {
+			System.out.println("Fehler beim Einlesen.");
+		}
+		
+		return ergebnis;
+	}
+
+}
