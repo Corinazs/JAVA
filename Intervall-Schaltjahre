@@ -1,0 +1,60 @@
+package KEs;
+
+import java.util.GregorianCalendar;
+
+public class Schaltjahre {
+
+	/*
+	 * Schreiben Sie eine Methode printLeapYears(), die zwei Jahreszahlen als Parameter
+	 * entgegen nimmt und alle Schaltjahre am Bildschirm ausgibt, die zwischen
+	 * diesen Jahren liegen.
+	 * 
+	 * Formel für Schaltjahre:
+	 * Ist die Jahreszahl durch vier teilbar, aber nicht durch 100, ist es ein Schaltjahr. 
+	 * Ist die Jahreszahl durch 100 teilbar, aber nicht durch 400, ist es kein Schaltjahr. 
+	 * Ist die Jahreszahl durch 400 teilbar, dann ist es ein Schaltjahr.
+	 */
+
+	public void printLeapYears(int fromYear, int toYear) {
+		Integer[] schaltjahre = new Integer[toYear-fromYear];
+		int j=0;
+
+		for(int i=fromYear+1; i<toYear;i++) {
+			if(i%4 == 0 && i%100 !=0) {
+				schaltjahre[j] = i;
+				j = j+1;
+
+			}
+			if(i%100==0 && i%400 != 0) {
+				schaltjahre[j] = i;
+				j = j+1;
+			}
+
+			if(i%400 == 0) {
+				schaltjahre[j] = i;
+				j = j+1;
+			}
+		}
+
+		for(int i=0; i<schaltjahre.length;i++) {
+			if(schaltjahre[i] != null) {
+				System.out.println(schaltjahre[i]);
+			}
+		}
+	}
+
+	/*	public void printLeapYears2(int fromYear, int toYear) {
+		GregorianCalendar calendar = new GregorianCalendar();
+		for (int year = fromYear; year <= toYear; year++) {
+			if (calendar.isLeapYear(year)) {
+				System.out.println(year);
+			}
+		}
+	}
+	 */
+	public static void main(String[] agrs) {
+		Schaltjahre test = new Schaltjahre();
+		test.printLeapYears(2010, 2020);
+	}
+
+}
