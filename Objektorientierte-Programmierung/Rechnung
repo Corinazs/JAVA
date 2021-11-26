@@ -27,8 +27,8 @@ public class Rechnung {
 	}
 	
 		public static void main(String[] args) {
-		Kunde k1 = new Kunde("Corina", "zsads");
-		Kunde k2 = new Kunde("Schnikado", "iaodhus");
+		Kunde k1 = new Kunde("Corina", "Sechs-Träume-Weg 82, 89037 Traumhausen");
+		Kunde k2 = new Kunde("Schnikado", "Sechs-Träume-Weg 82, 89037 Traumhausen");
 		
 		Rechnung a = new Rechnung();
 		a.rechnungsempfaenger = k1;
