@@ -25,5 +25,21 @@ public class Rechnung {
 		System.out.println(rechnungsempfaenger.liefereAnschrift());
 		System.out.println("Netto: " + berechneNettopreis());
 	}
+	
+		public static void main(String[] args) {
+		Kunde k1 = new Kunde("Corina", "zsads");
+		Kunde k2 = new Kunde("Schnikado", "iaodhus");
+		
+		Rechnung a = new Rechnung();
+		a.rechnungsempfaenger = k1;
+		Rechnung b = new Rechnung();
+		
+		b.rechnungsempfaenger = k1;
+		
+		System.out.println(a.rechnungsempfaenger.liefereName());
+		System.out.println(b.rechnungsempfaenger.liefereName());
+		
+	}
+	
 }
 	
