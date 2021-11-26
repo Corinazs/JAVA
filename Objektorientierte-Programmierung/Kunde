@@ -1,0 +1,21 @@
+public class Kunde {
+	
+	private String name;
+	 String anschrift;
+	
+	
+	public Kunde(String name, String anschrift) {
+		
+		this.name = name;
+		this.anschrift = anschrift;
+	}
+	
+	public String liefereName() {
+		return name;
+	}
+	
+	public String liefereAnschrift() {
+		return anschrift;
+	}
+
+}
