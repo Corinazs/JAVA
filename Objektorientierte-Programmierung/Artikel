@@ -1,0 +1,33 @@
+package Rechnung;
+
+public class Artikel {
+	
+	private long artikelnr;
+	private String beschreibung;
+	private double preis;
+	
+	public void legeArtikelnummerFest(long neueNr) {
+		artikelnr = neueNr;
+	}
+	
+	public void legeBeschreibungFest(String neueB) {
+		beschreibung = neueB;
+	}
+	
+	public void legePreisFest(double neuerPreis) {
+		preis = neuerPreis;
+	}
+	
+	public long liefereArtikelnummer() {
+		return artikelnr;
+	}
+	
+	public String liefereBeschreibung() {
+		return beschreibung;
+	}
+	
+	public double lieferePreis() {
+		return preis;
+	}
+
+}
