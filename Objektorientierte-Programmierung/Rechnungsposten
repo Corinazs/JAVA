@@ -1,0 +1,24 @@
+public class Rechnungsposten {
+	
+	int anzahl;
+	Artikel artikel;
+	double gesamtbetrag;
+	
+	public void legeAnzahlFest (int neueAnzahl) {
+		anzahl = neueAnzahl;
+	}
+	public void legeArtikelFest(Artikel neuerArtikel) {
+		artikel = neuerArtikel;
+	}
+	public double berechneGesamtbetrag() {
+		gesamtbetrag = liefereArtikel().lieferePreis() * liefereAnzahl();
+		return gesamtbetrag;
+	}
+	public int liefereAnzahl() {
+		return anzahl;
+	}
+	public Artikel liefereArtikel() {
+		return artikel;
+	}
+
+}
