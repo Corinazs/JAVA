@@ -1,29 +1,78 @@
 public class Rechnung {
 
-	double betrag;
-	double rabatt;
-  
-  //Verweis auf Objekt "Kunde"
-	private Kunde rechnungsempfaenger;
-	
-  int anzahl = 0;
-	double preis;
-	
-	public void legeRabattFest(double neuerRabatt) {
-		rabatt = neuerRabatt;
-	}
-	
-	public double berechneNettopreis() {
-		betrag = betrag - rabatt;
-		
+	private double betrag = 0;
+	private	double mehrwertsteuer;
+	private	double rabatt;
+	Kunde rechnungsempfaenger;
+	int anzahl = 0;
+	private	double preis;
+	private	double nettobetrag;
+	private	double bruttobetrag;
+
+	//getter-Methoden
+	public double getBetrag(){
 		return betrag;
 	}
-	
+	public double getMwSt() {
+		return mehrwertsteuer;
+	}
+	public double getRabatt() {
+		return rabatt;
+	}
+	public double getPreis() {
+		return preis;
+	}
+	public double getbruttobetrag() {
+		return bruttobetrag;
+	}
+	public double getnettobetrag() {
+		return nettobetrag;
+	}
+
+	public void legeRabattFest(final double neuerRabatt) {
+		if(neuerRabatt>=0 && neuerRabatt<=0.5) {
+			rabatt = neuerRabatt;
+		}
+	}
+
+	public void legeMehrwertStFest(double steuer){
+		mehrwertsteuer = steuer;
+	}
+
+	public void fuegePostenHinzu(int anzahl, double einzelpreis) {
+		betrag = betrag + anzahl * einzelpreis;
+	}
+
+	public double berechneNettopreis() {
+		nettobetrag = betrag  - rabatt;
+
+		return betrag;
+	}
+
+	public double berechneBruttopreis() {
+		bruttobetrag = betrag * (1+ mehrwertsteuer) - rabatt;
+
+		return bruttobetrag;
+	}
+
 	public void gebeAus() {
-		System.out.println("An: ");
-		System.out.println(rechnungsempfaenger.liefereName());
-		System.out.println(rechnungsempfaenger.liefereAnschrift());
-		System.out.println("Netto: " + berechneNettopreis());
+		System.out.println("An:");
+		System.out.println(this.rechnungsempfaenger.liefereName());
+		System.out.println(this.rechnungsempfaenger.liefereAnschrift());
+		System.out.print("Netto: ");
+		System.out.println(berechneNettopreis());
+		System.out.print("MwSt: ");
+		System.out.println(getMwSt());
+		System.out.print("Brutto: ");
+		System.out.println(berechneBruttopreis());
+	}
+	
+	Kunde liefereRechnungsempfanger() {
+		return this.rechnungsempfaenger;
+	}
+
+	public void andereRechnungsempfaenger(Kunde neuerEmpfaenger) {
+		this.rechnungsempfaenger = neuerEmpfaenger;
 	}
 	
 		public static void main(String[] args) {
