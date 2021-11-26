@@ -1,0 +1,29 @@
+public class Rechnung {
+
+	double betrag;
+	double rabatt;
+  
+  //Verweis auf Objekt "Kunde"
+	private Kunde rechnungsempfaenger;
+	
+  int anzahl = 0;
+	double preis;
+	
+	public void legeRabattFest(double neuerRabatt) {
+		rabatt = neuerRabatt;
+	}
+	
+	public double berechneNettopreis() {
+		betrag = betrag - rabatt;
+		
+		return betrag;
+	}
+	
+	public void gebeAus() {
+		System.out.println("An: ");
+		System.out.println(rechnungsempfaenger.liefereName());
+		System.out.println(rechnungsempfaenger.liefereAnschrift());
+		System.out.println("Netto: " + berechneNettopreis());
+	}
+}
+	
