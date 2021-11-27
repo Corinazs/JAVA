@@ -1,0 +1,36 @@
+public class Schaetzfrage extends AbstrakteZahlenfrage{
+	
+	int answer;
+	int abweichung;
+	int min;
+	int max;
+	
+	/*
+	 * SchaetzFrage(String frage, int punkte, int richtigeAntwort, int prozentualeAbweichung): erzeugt eine neue Frage, mit der in frage übergebene Fragestellung, 
+	 * den in punkte übergebenen maximal möglichen Punkten, der in richtigeAntwort übergebenen richtigen Antwort und die Abweichung in Prozent, 
+	 * in der eine Antwort dennoch als richtig gilt
+	 */
+	
+	public Schaetzfrage(String frage, int punkte, int richtigeAntwort, int prozentualeAbweichung) {
+		super(frage, punkte);
+		answer = richtigeAntwort;
+		abweichung = prozentualeAbweichung;
+		min = (answer*(100 - abweichung) / 100) ;
+		max = (answer * (100 + abweichung) / 100);
+	
+	}
+
+	/*
+	 * boolean istRichtigBeantwortet(): liefert true, wenn die Frage schon beantwortet wurde und die gegebene Antwort 
+	 * sich innerhalb des Intervalls [richtigeAntwort * (100 - abweichung) / 100, richtigeAntwort * (100 + abweichung) / 100] befindet.
+	 */
+	public boolean istRichtigBeantwortet() {
+		if(istBeantwortet() == true) {
+			if(liefereAntwort()== answer || liefereAntwort()>= min && liefereAntwort() <= max) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+}
