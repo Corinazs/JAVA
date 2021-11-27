@@ -1,21 +1,57 @@
+package Rechnung;
+
 public class Rechnung {
 
-	private double betrag = 0;
-	private	double mehrwertsteuer;
+
+	static final double STANDARD_MEHRWERTSTEUERSATZ = 0.19;
+	public static int naechsteRechnungsnummer = 10000;
+	final int rechnungsnummer;
+
+	//	private double betrag = 0;
+	//	private	double mehrwertsteuer;
 	private	double rabatt;
 	Kunde rechnungsempfaenger;
 	int anzahl = 0;
 	private	double preis;
-	private	double nettobetrag;
-	private	double bruttobetrag;
+	private	double nettobetrag=0;
+	private	double bruttobetrag=0;
+	double summeMwSt=0;
+
+	final static int MAX_POSTEN = 100;
+	Rechnungsposten[] speicher = new Rechnungsposten[MAX_POSTEN];
+
+
+/*	Rechnung() {
+		//Bei "static" muss Zugriff über Klassenname.Attribut erfolgen
+		this(Rechnung.STANDARD_MEHRWERTSTEUERSATZ);
+	}
+*/
+	/*	Rechnung(double mwst) {
+		//		mehrwertsteuer = mwst;
+		//Bei "static" muss Zugriff über Klassenname.Attribut erfolgen
+		this.rechnungsnummer = Rechnung.naechsteRechnungsnummer;
+		Rechnung.naechsteRechnungsnummer++;
+	}
+	 */
+	Rechnung(Kunde empfaenger) {
+		this.rechnungsempfaenger = empfaenger;
+		this.rechnungsnummer = Rechnung.berechneNaechsteRechnungsnummer();
+
+	}
+	// Klassenmethode
+	static int berechneNaechsteRechnungsnummer() {
+		return Rechnung.naechsteRechnungsnummer++;
+
+	}
 
 	//getter-Methoden
-	public double getBetrag(){
+	/*	public double getBetrag(){
 		return betrag;
 	}
 	public double getMwSt() {
 		return mehrwertsteuer;
 	}
+	 */	
 	public double getRabatt() {
 		return rabatt;
 	}
@@ -35,24 +71,48 @@ public class Rechnung {
 		}
 	}
 
-	public void legeMehrwertStFest(double steuer){
+	/*	public void legeMehrwertStFest(double steuer){
 		mehrwertsteuer = steuer;
 	}
-
-	public void fuegePostenHinzu(int anzahl, double einzelpreis) {
+	 */
+	/*	public void fuegePostenHinzu(int anzahl, double einzelpreis) {
 		betrag = betrag + anzahl * einzelpreis;
 	}
+	 */
+	public void fuegePostenHinzu(Rechnungsposten r) {
+		if(anzahl<speicher.length) {
+			speicher[anzahl]=r;
+			anzahl++;
+		}
+		else {
+			System.out.println("Speicher bereits voll.");
+		}
+	}
+
 
 	public double berechneNettopreis() {
-		nettobetrag = betrag  - rabatt;
-
-		return betrag;
+		//		nettobetrag = betrag  - rabatt;
+		for(int i=0;i<anzahl;i++) {
+			nettobetrag = nettobetrag + speicher[i].berechneGesamtbetrag();
+		}
+		return nettobetrag * (1 - getRabatt());
+		//		return betrag;
 	}
 
 	public double berechneBruttopreis() {
-		bruttobetrag = betrag * (1+ mehrwertsteuer) - rabatt;
-
+		//		bruttobetrag = betrag * (1+ mehrwertsteuer) - rabatt;
+		for(int i=0;i<anzahl;i++) {
+			bruttobetrag = bruttobetrag + speicher[i].berechneGesamtbetrag() + speicher[i].berechneGesamtbetrag()*Rechnung.STANDARD_MEHRWERTSTEUERSATZ;
+		}
+		bruttobetrag = bruttobetrag * (1- getRabatt());
 		return bruttobetrag;
+	}
+
+	public double berechneMehrwertsteuer() {
+		for(int i=0;i<speicher.length;i++) {
+			summeMwSt = summeMwSt + speicher[i].berechneGesamtbetrag()*Rechnung.STANDARD_MEHRWERTSTEUERSATZ;
+		}
+		return summeMwSt;
 	}
 
 	public void gebeAus() {
@@ -62,11 +122,20 @@ public class Rechnung {
 		System.out.print("Netto: ");
 		System.out.println(berechneNettopreis());
 		System.out.print("MwSt: ");
-		System.out.println(getMwSt());
+		System.out.println(berechneMehrwertsteuer());
 		System.out.print("Brutto: ");
 		System.out.println(berechneBruttopreis());
+		System.out.println();
+		System.out.println("Rechnungsposten: ");
+
+		for(int i=0; i<anzahl;i++) {
+			System.out.println(speicher[i].liefereArtikel());
+			System.out.println("Anzahl: " + speicher[i].liefereAnzahl());
+			
+		}
+
 	}
-	
+
 	Kunde liefereRechnungsempfanger() {
 		return this.rechnungsempfaenger;
 	}
@@ -74,21 +143,7 @@ public class Rechnung {
 	public void andereRechnungsempfaenger(Kunde neuerEmpfaenger) {
 		this.rechnungsempfaenger = neuerEmpfaenger;
 	}
-	
-		public static void main(String[] args) {
-		Kunde k1 = new Kunde("Corina", "Sechs-Träume-Weg 82, 89037 Traumhausen");
-		Kunde k2 = new Kunde("Schnikado", "Sechs-Träume-Weg 82, 89037 Traumhausen");
-		
-		Rechnung a = new Rechnung();
-		a.rechnungsempfaenger = k1;
-		Rechnung b = new Rechnung();
-		
-		b.rechnungsempfaenger = k1;
-		
-		System.out.println(a.rechnungsempfaenger.liefereName());
-		System.out.println(b.rechnungsempfaenger.liefereName());
-		
-	}
+
+
 	
 }
-	
