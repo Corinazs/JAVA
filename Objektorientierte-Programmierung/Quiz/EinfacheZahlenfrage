@@ -1,0 +1,27 @@
+public class EinfacheZahlenfrage extends AbstrakteZahlenfrage{
+
+	int antwort;
+	
+	/*
+	 * EinfacheZahlenfrage(String frage, int punkte, int richtigeAntwort): erzeugt eine neue Frage, mit der in frage übergebene Fragestellung, 
+	 * den in punkte übergebenen maximal möglichen Punkten und der in richtigeAntwort übergebenen richtigen Antwort
+	 */
+	
+	public EinfacheZahlenfrage(String frage, int punkte, int richtigeAntwort) {
+		super(frage, punkte);
+		antwort = richtigeAntwort;
+	}
+
+	/*
+	 * boolean istRichtigBeantwortet(): liefert true, wenn die Frage schon beantwortet wurde und der Wert der Antwort genau mit der im Konstruktor festgelegten Antwort übereinstimmt.
+	 */
+	
+	public boolean istRichtigBeantwortet() {
+		if(istBeantwortet() == true && liefereAntwort() == antwort) {
+			return true;
+		}
+		return false;
+	}
+
+	
+}
