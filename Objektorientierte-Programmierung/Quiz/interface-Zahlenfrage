@@ -1,0 +1,21 @@
+public interface Zahlenfrage {
+	
+	/*
+	 * 
+    boolean istBeantwortet(): liefert true wenn die Methode legeAntwortFest() schon mindestens einmal ausgeführt wurde, ansonsten false
+    boolean istRichtigBeantwortet(): liefert true wenn die Frage schon beantwortet wurde und die Antwort richtig war, ansonsten false
+    void legeAntwortFest(int antwort): legt die Antwort auf diese Frage fest
+    int liefereErreichtePunkte(): liefert die Anzahl der erreichten Punkte, abhängig von der Korrektheit der Antwort
+    String liefereFrage(): liefert den Fragetext der Aufgabe
+    int liefereMoeglichePunkte(): liefert die maximal mögliche Anzahl an erreichbaren Punkten
+
+	 */
+		
+	public boolean istBeantwortet();
+	public boolean istRichtigBeantwortet();
+	public void legeAntwortFest(int antwort);
+	public int liefereErreichtePunkte();	
+	public String liefereFrage();	
+	public int liefereMoeglichePunkte();
+	
+}
