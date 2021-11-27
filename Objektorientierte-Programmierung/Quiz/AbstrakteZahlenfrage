@@ -1,0 +1,56 @@
+public abstract class AbstrakteZahlenfrage implements Zahlenfrage {
+	
+	/*
+	 * 
+    AbstrakteZahlenfrage(String frage, int punkte): erzeugt eine neue Frage, mit der in frage übergebene Fragestellung und den in punkte übergebenen maximal möglichen Punkten
+    boolean istBeantwortet(): entsprechend der Schnittstellenbeschreibung
+    void legeAntwortFest(int antwort): entsprechend der Schnittstellenbeschreibung
+    int liefereErreichtePunkte(): liefert die maximal mögliche Anzahl an Punkte, wenn die Frage beantwortet wurde und wenn die Antwort richtig war, ansonsten 0
+    String liefereFrage(): liefert die im Konstruktor übergebene Fragestellung
+    int liefereMoeglichePunkte(): liefert die im Konstruktor übergebene maximal möglichen Punkten
+
+	 */
+	
+	int answer;
+	String question;
+	int count=0;
+	int punkteMax;
+	
+	public AbstrakteZahlenfrage(String frage, int punkte) {
+		question = frage;
+		punkteMax = punkte;
+	}
+	
+	public boolean istBeantwortet(){
+		if(count>0) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public void legeAntwortFest(int antwort) {
+		count=count+1;
+		answer = antwort;
+	}
+	
+	public int liefereAntwort() {
+		return answer;
+	}
+	
+	public int liefereErreichtePunkte() {
+		if(istBeantwortet()==true && istRichtigBeantwortet()==false) {
+			return punkteMax;
+		}
+		return 0;
+	}
+	
+	public String liefereFrage() {
+		return question;
+	}
+	
+	public int liefereMoeglichePunkte() {
+		return punkteMax;
+	}
+
+}
