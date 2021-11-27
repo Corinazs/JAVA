@@ -1,0 +1,74 @@
+public class Quiz {
+	
+	/*
+	 * 
+    Quiz (int fragenAnzahl): erzeugt ein neues Quiz, mit maximal fragenAnzahl Fragen
+    boolean fuegeFrageHinzu(Zahlenfrage f): wenn schon die maximal mögliche Anzahl an Fragen im Quiz gespeichert wurde, 
+    wird false zurückgeliefert, ansonsten wird die Frage hinten ans Quiz angefügt und die Methode liefert true zurück; 
+    wird null übergeben, passiert nichts und es wird false zurückgeliefert
+    int berechneErreichtePunkte(): liefert die Summe aller erreichten Punkte
+    int berechneMaximalMoeglichePunkte(): liefert die Summe der maximal möglichen Punkte
+    Zahlenfrage liefereFrage(int index): liefert die Frage an Position index; dabei ist die zuerst hinzugefügte Frage an Position 0 zu finden;
+    gibt es zu dem Index keine Frage wird null zurückgeliefert
+    int liefereFragenAnzahl(): liefert die Anzahl der im Quiz gespeicherten Fragen
+
+	 */
+
+	Zahlenfrage fragen;
+	
+	int maxFragenAnzahl=0;
+	Zahlenfrage[] fragenSpeicher;
+	int summe = 0;
+	int maxPunkte = 0;
+	int count=0;
+	
+	public Quiz(int fragenAnzahl) {
+		
+		fragenSpeicher = new Zahlenfrage[fragenAnzahl];
+		
+	}
+	
+	public boolean fuegeFrageHinzu(Zahlenfrage f) {
+		
+			if(maxFragenAnzahl<fragenSpeicher.length) {
+				maxFragenAnzahl++;
+				count++;
+				return true;
+			}
+			if(f == (null)) {
+				return false;
+			}
+		
+		return false;
+	}
+	
+	public int berechneErreichtePunkte() {
+		for(int i=0; i<fragenSpeicher.length;i++) {
+				summe = summe + fragenSpeicher[i].liefereErreichtePunkte();
+			
+		}
+		return summe;
+	}
+	
+	public int berechneMaximalMoeglichePunke() {
+		for(int i=0;i<fragenSpeicher.length;i++) {
+			maxPunkte = maxPunkte + fragenSpeicher[i].liefereMoeglichePunkte();
+		}
+		return maxPunkte;
+	}
+	
+
+
+	public Zahlenfrage liefereFrage(int index) {
+		if (index < 0 || index >= this.liefereFragenAnzahl()) {
+			return null;
+		}
+		return this.fragenSpeicher[index];
+	}
+	
+	public int liefereFragenAnzahl(){
+		return count;
+	}
+	
+	
+}
