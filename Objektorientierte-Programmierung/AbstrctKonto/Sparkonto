@@ -1,0 +1,25 @@
+package Konto;
+
+public class Sparkonto extends Konto{
+
+
+	public double geldAbheben(double betrag) {
+
+		if(this.kontostand+betrag>=0) {
+			kontostand = kontostand - betrag;
+			return betrag;
+		}
+
+		if(this.kontostand>=0 && kontostand+betrag<0) {
+			System.out.println("Es kann nur " + kontostand + " EUR ausbezahlt werden.");
+			this.auszahlung = kontostand;
+			kontostand = 0;
+			return auszahlung;
+		}
+
+		System.out.println("Keine Auszahlung möglich.");
+		return 0;
+	}
+
+
+}
