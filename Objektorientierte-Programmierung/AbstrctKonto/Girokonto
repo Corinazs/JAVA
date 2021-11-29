@@ -1,0 +1,24 @@
+package Konto;
+
+public class Girokonto extends Konto{
+
+	public double kredit;
+
+	public void kredithoeheFestlegen(double summe) {
+		kredit = summe;
+	}
+
+	public double geldAbheben(double betrag) {
+		if(this.kontostand+betrag>=-kredit) {
+			kontostand -= betrag;
+			return betrag;
+		}
+		if(betrag>this.kontostand+kredit) {
+			System.out.println("Es kann maximal " +this.kontostand+kredit+ " abheben.");
+		}
+
+		System.out.println("Nicht ausreichend Geld vorhanden.");
+		return 0;
+	}
+
+}
