@@ -1,0 +1,31 @@
+package waren;
+
+public class Pflanze extends Artikel {
+
+	private double lagertemperatur;
+
+	
+	public Pflanze(final double preis, final int artikelnr, double temp) {
+		super(preis, artikelnr); //greift auf Konstruktor von Artikel zu 
+		legeLagertemperaturFest(temp);
+	}
+	
+	public Pflanze(final double preis, final int artikelnr, final String name, final double lagertemp) {
+		super(preis, artikelnr, name); //greift auf Konstruktor von Artikel zu 
+		legeLagertemperaturFest(lagertemp);
+	}
+	
+	public double liefereLagertemperatur() {
+		return lagertemperatur;
+	}
+
+	void legeLagertemperaturFest(final double temp) {
+		lagertemperatur = temp;
+	}
+
+	public void gebeInformationenAus() {
+		super.gebeInformationenAus();
+		System.out.print("Lagertemperatur: ");
+		System.out.println(this.liefereLagertemperatur());
+	}
+}
