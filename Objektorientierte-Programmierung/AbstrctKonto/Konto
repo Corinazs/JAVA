@@ -1,0 +1,17 @@
+package Konto;
+
+public abstract class Konto {
+	
+	double auszahlung;
+	double kontostand = 0;
+	
+	public void geldEinzahlen(double betrag) {
+		if(betrag<=0) {
+			System.out.println("Nur postive Beträge möglich.");
+		}
+			kontostand = kontostand + betrag;
+	}
+	
+	public abstract double geldAbheben(double betrag);
+
+}
