@@ -1,0 +1,53 @@
+package waren;
+
+public class Artikel {
+
+	private long artikelnr;
+	private String beschreibung;
+	private double preis;
+
+
+	Artikel(final double preis, final int artikelnr) {
+		legePreisFest(preis);
+		legeArtikelnummerFest(artikelnr);
+	}
+	
+	Artikel(final double preis, final int artikelnr, final String name) {
+		this(preis, artikelnr); //greift auf darüberliegenden Konstruktor zu
+		legeBeschreibungFest(name);
+	}
+
+	void legeArtikelnummerFest(long neueNr) {
+		artikelnr = neueNr;
+	}
+
+	void legeBeschreibungFest(String neueB) {
+		beschreibung = neueB;
+	}
+
+	void legePreisFest(double neuerPreis) {
+		preis = neuerPreis;
+	}
+
+	public long liefereArtikelnummer() {
+		return artikelnr;
+	}
+
+	public String liefereBeschreibung() {
+		return beschreibung;
+	}
+
+	public double lieferePreis() {
+		return preis;
+	}
+
+	public void gebeInformationenAus() {
+		System.out.print("Artikel ");
+		System.out.println(this.liefereBeschreibung());
+		System.out.print("Nr: ");
+		System.out.println(this.liefereArtikelnummer());
+		System.out.print("Preis: ");
+		System.out.println(this.lieferePreis());
+	}
+}
+
