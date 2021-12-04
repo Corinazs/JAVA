@@ -1,0 +1,37 @@
+public class Bubblesort {
+	
+	int vergleichen=0;
+	int vertauschen=0;
+
+	public void bubblesort(int[] feld) {
+		// es werden maximal feld.length - 1 Durchläufe benötigt
+		for (int i = 0; i < feld.length - 1; i++) {
+			// solange keine Vertauschungen vorgenommen werden
+			// ist das Feld sortiert
+			
+			boolean sorted = true;
+			// Durchlaufe das Feld, in jedem Durchlauf muss
+			// ein Element weniger berücksichtigt werden
+			for (int j = 0; j < feld.length - 1 - i; j++) {
+				vergleichen++;
+				if (feld[j] > feld[j + 1]) {
+					// wenn linkes größer
+					// dann vertausche
+					int temp = feld[j];
+					feld[j] = feld[j + 1];
+					feld[j + 1] = temp;
+					// Feld ist nicht sortiert
+					sorted = false;					
+					vertauschen++;
+					
+				}
+			}
+			if (sorted) {
+				// keine Vertauschungen, Feld ist
+				// folglich vollständig sortiert
+				break;
+			}
+		}
+		System.out.println("Vergleichen: " +vergleichen);
+		System.out.println("Vertauschen: " +vertauschen);
+	}
