@@ -1,0 +1,20 @@
+public class SortierenAbsteigend {
+	
+	public void sortiereAbsteigend(String[] feld) {
+		String temp;
+		
+		if(feld == null) {
+			System.out.println("Feld ist leer.");
+		}
+		for(int i=0;i<feld.length-1;i++) {
+			for(int j=i+1;j<feld.length;j++) {
+				if(feld[i].compareTo(feld[j])<0) {
+					temp=feld[i];
+					feld[i]=feld[j];
+					feld[j]=temp;
+				}
+			}
+		}
+	}
+
+}
