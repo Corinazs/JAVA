@@ -1,0 +1,71 @@
+package Datenstrukturen;
+
+public class BinaryTree {
+
+	private BinaryTreeNode root;
+
+	public BinaryTree() {
+	}
+
+	public BinaryTree(BinaryTreeNode root) {
+		//Verweis auf den Wurzelknoten
+		this.root = root;
+	}
+
+	public void printPreorder() {
+		printPreorder(root);
+	}
+	private void printPreorder(BinaryTreeNode tn) {
+		//Abbruchbedingung Rekursion
+		if (tn == null) {
+			return;
+		}
+		System.out.print(tn.getEntry() + " ");
+		printPreorder(tn.getLeftChild());
+		printPreorder(tn.getRightChild());
+	}
+
+	public void printInorder() {
+		printInorder(root);
+	}
+	public void printInorder(BinaryTreeNode tn) {
+		if(tn==null){
+			return;
+		}
+		printInorder(tn.getLeftChild());
+		System.out.print(tn.getEntry() + " ");
+		printInorder(tn.getRightChild());
+
+	}	
+
+	public void printPostorder() {
+		printPostorder( root);
+	}
+	public void printPostorder(BinaryTreeNode tn) {
+		if(tn== null) {
+			return;
+		}
+		printPostorder(tn.getLeftChild());
+		printPostorder(tn.getRightChild());
+		System.out.print(tn.getEntry() + " ");
+	}
+
+	
+
+	/*
+	 * Mit Hilfe der folgenden Anweisungen erzeugen wir den in README dargestellten Baum:
+
+	public static void main(String [] args) {
+		BinaryTreeNode fuenf = new BinaryTreeNode(5);
+		BinaryTreeNode sechs = new BinaryTreeNode(6,null, fuenf);
+		BinaryTreeNode neun = new BinaryTreeNode(9);
+		BinaryTreeNode zwei = new BinaryTreeNode(2,neun,sechs);
+		BinaryTreeNode vier = new BinaryTreeNode (4);
+		BinaryTreeNode acht = new BinaryTreeNode (8);
+		BinaryTreeNode eins = new BinaryTreeNode (1, vier, acht);
+		BinaryTreeNode root = new BinaryTreeNode (7,zwei,eins);
+		BinaryTree t = new BinaryTree(root);
+	}
+}
+
+
