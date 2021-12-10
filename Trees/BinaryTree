@@ -49,6 +49,22 @@ public class BinaryTree {
 		printPostorder(tn.getRightChild());
 		System.out.print(tn.getEntry() + " ");
 	}
+	
+	public boolean contains(int x) {
+		return contains(root,x);
+	}
+	private boolean contains(BinaryTreeNode tn, int x) {
+		if(tn== null) {
+			return false;
+		}
+		
+		//search in root
+		if(tn.getEntry()==x) {
+			return true;
+		}
+		return contains(tn.getLeftChild(), x) || contains(tn.getRightChild(),x);
+		
+	}
 
 	
 
