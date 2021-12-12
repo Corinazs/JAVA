@@ -1,0 +1,75 @@
+package Datenstrukturen;
+
+public class BinarySearchTree {
+
+	BinaryTreeNode root;
+
+	public BinarySearchTree(BinaryTreeNode root) {
+		this.root = root;
+	}
+  
+  	public void add(int x) {
+
+		if (root == null) {
+			root = new BinaryTreeNode(x);
+		} else {
+
+			add(root, x);
+		}
+	}
+  
+	private void add(BinaryTreeNode tn, int x) {
+		if (x < tn.getEntry()) {	
+			if (tn.getLeftChild() == null) {
+				tn.setLeftChild(new BinaryTreeNode(x));
+			} else {
+				add(tn.getLeftChild(), x);
+			}
+		} else {
+			if (tn.getRightChild() == null) {
+				tn.setRightChild(new BinaryTreeNode(x));
+			} else {
+				add(tn.getRightChild(), x);
+			}
+		}
+	}
+
+	public boolean contains(int x) {
+		return contains(root, x);
+	}
+
+
+	private boolean contains(BinaryTreeNode tn, int x) {
+		if(tn == null) {
+			return false;
+		}
+		if(tn.getEntry()>x) {
+			contains(tn.getRightChild(),x);
+		}
+		if(tn.getEntry()<x) {
+			contains(tn.getLeftChild(),x);
+		}
+		if(tn.getEntry()==x) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public void printInorder() {
+		printInorder(root);
+	}
+
+	private void printInorder(BinaryTreeNode node){
+		if(node == null) {
+			return;
+		}
+		printInorder(node.getLeftChild());
+		System.out.println(node.getEntry());
+		printInorder(node.getRightChild());
+
+
+
+	}
+
+}
