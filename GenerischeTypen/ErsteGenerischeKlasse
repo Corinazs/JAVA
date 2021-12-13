@@ -1,0 +1,55 @@
+package GenerischeTypen;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
+public class ErsteGenerischeKlasse {
+
+	public void print(Iterable<String> i) {
+		// ungültige Argumente abfangen
+		if (i == null) {
+			return;
+		}
+		for(Iterator<String> it = i.iterator(); it.hasNext();) {
+			String s = it.next();
+			System.out.println(s);
+		}
+	}
+	
+	public void findeKuerzesteUndLaengsteZeichenkette(List<String> l) {
+		//Iterator erzeugen
+		Iterator<String> it = l.iterator();
+		int min = l.get(0).length();
+		int max= l.get(0).length();
+		int index=0;
+		
+		while(it.hasNext() && index<l.size()){
+			if(l.get(index).length()<min) {
+				min = l.get(index).length();
+				
+			}
+			if(l.get(index).length()>max) {
+				max = l.get(index).length();
+			}
+			System.out.println(l.get(index));
+			index++;
+		}
+		System.out.println("Min: " +min);
+		System.out.println("Max: " +max);
+		
+	}
+	
+	public static void main(String[] args) {
+		List<String> test = new LinkedList<String>();
+		ErsteGenerischeKlasse test2 = new ErsteGenerischeKlasse();
+		
+		test.add("hallo");
+		test.add("ciao");
+		test.add("Spaghetti");
+		test.add("Pizza Tono");
+		test.add("Gefahrenübergangverbotsschild");
+		
+		test2.findeKuerzesteUndLaengsteZeichenkette(test);
+	}
+}
