@@ -1,0 +1,22 @@
+public class Bubblesorter<T extends Comparable<T>> {
+	
+	public void sort(T[] feld) {
+		for(int i=0; i<feld.length-1;i++) {
+			boolean sorted = true;
+			for(int j=0;j<feld.length-1;j++) {
+				if(feld[j].compareTo(feld[j+1])>0) {
+					T temp = feld[j];
+					feld[j] = feld[j + 1];
+					feld[j + 1] = temp;
+
+					sorted = false;
+				}
+			}
+			if (sorted) {
+				break;
+			}
+		}
+	}
+}
+
+
