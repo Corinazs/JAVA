@@ -1,0 +1,94 @@
+public class LinkedList<T extends Comparable<T>> {
+
+	private ListNode<T> head;
+
+	public LinkedList() {
+		this.head = null;
+	}
+
+	public void add(T value) {
+		//neuen Listenknoten erzeugen, zeige auf nächsten Knoten
+		ListNode<T> newNode = new ListNode<T>(value, this.head);
+		this.head = newNode;
+	}
+
+
+	public boolean contains(T value) {
+		ListNode<T> current = this.head;
+		while (current != null) {
+			if (current.getEntry() == value) {
+				return true;
+			}
+			current = current.getNext();
+		}
+		return false;
+	}
+
+
+	public void printList() {
+		printList(this.head);
+	}
+	private void printList(ListNode<T> node) {
+		if (node == null) {
+			return;
+		}
+
+		printList(node.getNext());
+		node.print();
+
+	}
+
+	public void printReverseList() {		
+		printReverseList (this.head);
+	}
+	private void printReverseList(ListNode<T> node) {
+		if(node==null) {
+			return;
+		}
+		node.print();
+		printReverseList(node.getNext());
+	}
+
+	public void remove(T value) {		
+		this.head = remove(this.head,value);
+	}
+	private ListNode<T> remove(ListNode<T> node, T value) {
+
+		if(node.getEntry()==value) {
+
+			return node.getNext(); //übergibt nächsten Knoten an Zeile 94
+		}
+
+		node.setNext(remove(node.getNext(),value));
+		//remove(node.getNext(), value);
+		return node;
+	}
+
+	public boolean contains2(T value) {
+		return contains2(this.head,value);
+	}
+
+	private boolean contains2(ListNode<T> node, T value) {
+		if(node==null) {
+			return false;
+		}
+		if(node.getEntry()!= value) {
+			contains2(node.getNext(), value);
+		}
+		return true;
+	}
+
+
+
+	public void clear() {
+		this.head = null;
+	}
+	public boolean isEmpty() {
+		if(this.head == null) {
+			return true;
+		}
+		return false;
+	}
+
+
+}
