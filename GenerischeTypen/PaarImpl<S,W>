@@ -1,0 +1,36 @@
+public class PaarImpl<S,W> implements Paar<S,W>{
+
+	private S schluessel;
+	private W wert;
+	
+	public PaarImpl(S key, W value){
+		this.setzeSchluessel(key);
+		this.setzeWert(value);
+	}
+
+	public S liefereSchluessel() {
+		return this.schluessel;
+	}
+
+	public W liefereWert() {
+		return this.wert;
+	}
+
+	public boolean istGleich(Paar<S,W> p) {
+		if(this.schluessel==p.liefereSchluessel()) {
+			if(this.wert == p.liefereWert()) {
+				return true;
+			}	
+		}
+		return false;
+	}
+
+	public void setzeWert(W wert) {
+		this.wert = wert;
+	}
+
+	public void setzeSchluessel(S schluessel) {
+		this.schluessel = schluessel;
+	}
+
+}
