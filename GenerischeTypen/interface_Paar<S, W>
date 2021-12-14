@@ -1,0 +1,9 @@
+public interface Paar<S, W> {
+
+	public S liefereSchluessel();
+	public W liefereWert();
+	public boolean istGleich(Paar<S,W> p);
+	public void setzeWert(W wert);
+	public void setzeSchluessel(S schluessel);
+
+}
